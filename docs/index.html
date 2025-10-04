@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Keyboard Repeat Pattern Explorer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <h1>Keyboard Repeat Pattern Explorer</h1>
+      <p>
+        Hold down multiple keys simultaneously to observe how your system
+        generates repeated <kbd>keydown</kbd> events. The live log and pattern
+        summary help you determine whether the repeat stream alternates between
+        keys or favors a single key.
+      </p>
+    </header>
+
+    <main class="content">
+      <section class="controls" aria-label="Controls">
+        <button id="clear-log" type="button">Clear log</button>
+        <label class="toggle">
+          <input id="toggle-pause" type="checkbox" />
+          Pause capture
+        </label>
+        <p class="hint">
+          Tip: Click anywhere on the page before testing to ensure it has focus.
+        </p>
+      </section>
+
+      <section class="status" aria-label="Currently held keys">
+        <h2>Held keys</h2>
+        <p id="no-held-keys">No keys are currently held.</p>
+        <ul id="held-keys" class="pill-list" aria-live="polite"></ul>
+      </section>
+
+      <section class="pattern" aria-label="Repeat pattern">
+        <h2>Repeat pattern</h2>
+        <p class="pattern-description">
+          The sequence below shows the most recent keys that produced repeated
+          <kbd>keydown</kbd> events. Use it to spot rotation orders or keys that
+          dominate the repeat stream.
+        </p>
+        <div class="pattern-sequence" id="pattern-sequence" aria-live="polite">
+          Waiting for repeated events...
+        </div>
+        <div class="pattern-stats">
+          <h3>Repeat counts</h3>
+          <ul id="pattern-counts" class="pill-list" aria-live="polite"></ul>
+        </div>
+      </section>
+
+      <section class="log" aria-label="Event log">
+        <h2>Event timeline</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Time (s)</th>
+                <th scope="col">Δ (ms)</th>
+                <th scope="col">Type</th>
+                <th scope="col">Key</th>
+                <th scope="col">Code</th>
+                <th scope="col">Repeat?</th>
+              </tr>
+            </thead>
+            <tbody id="event-log" aria-live="polite"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <p>
+        Keyboard repeat timing is influenced by your operating system,
+        keyboard firmware, and browser. Compare patterns across devices to learn
+        how they differ.
+      </p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

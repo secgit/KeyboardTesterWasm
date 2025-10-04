@@ -1,0 +1,232 @@
+:root {
+  color-scheme: light dark;
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: #11161f;
+  color: #e8edf5;
+  --accent: #2e9fff;
+  --accent-muted: rgba(46, 159, 255, 0.3);
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-strong: rgba(255, 255, 255, 0.08);
+  --shadow: rgba(0, 0, 0, 0.4);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header,
+.page-footer {
+  padding: 2.5rem clamp(1.5rem, 2vw, 3rem);
+  background: linear-gradient(135deg, rgba(46, 159, 255, 0.2), transparent);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.page-header h1 {
+  margin-top: 0;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+
+.page-header p,
+.page-footer p {
+  max-width: 60ch;
+  margin-bottom: 0;
+}
+
+.content {
+  flex: 1;
+  padding: 1.5rem clamp(1.5rem, 2vw, 3rem) 3rem;
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 960px) {
+  .content {
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: min-content;
+  }
+
+  .controls {
+    grid-column: 1 / span 4;
+  }
+
+  .status {
+    grid-column: 1 / span 4;
+  }
+
+  .pattern {
+    grid-column: 5 / span 8;
+  }
+
+  .log {
+    grid-column: 1 / span 12;
+  }
+}
+
+section {
+  background-color: var(--surface);
+  border-radius: 18px;
+  padding: 1.5rem;
+  box-shadow: 0 18px 40px -24px var(--shadow), 0 1px 0 rgba(255, 255, 255, 0.05) inset;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+section h2 {
+  margin-top: 0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  color: rgba(232, 237, 245, 0.75);
+}
+
+.pattern h3 {
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(232, 237, 245, 0.65);
+}
+
+button {
+  background-color: var(--accent);
+  border: none;
+  color: #021321;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+  box-shadow: 0 12px 24px -12px rgba(46, 159, 255, 0.8);
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 30px -16px rgba(46, 159, 255, 0.9);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 1rem;
+  font-size: 0.95rem;
+}
+
+.toggle input[type="checkbox"] {
+  accent-color: var(--accent);
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.hint {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: rgba(232, 237, 245, 0.6);
+}
+
+.pill-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pill-list li {
+  background-color: var(--surface-strong);
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.9rem;
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.pill-key {
+  font-weight: 600;
+}
+
+.pill-meta {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.pattern-sequence {
+  min-height: 3rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: var(--surface-strong);
+  font-family: "JetBrains Mono", "Fira Code", "Source Code Pro", monospace;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.table-wrapper {
+  max-height: 360px;
+  overflow: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: rgba(255, 255, 255, 0.05);
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(8px);
+}
+
+th,
+td {
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.85rem;
+  font-family: "JetBrains Mono", monospace;
+}
+
+tr:nth-child(even) td {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.log td:nth-child(6) {
+  text-transform: uppercase;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background-color: rgba(46, 159, 255, 0.2);
+  color: #a9d8ff;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  section {
+    padding: 1.1rem;
+  }
+
+  th,
+  td {
+    font-size: 0.75rem;
+  }
+
+  .toggle {
+    margin-left: 0.5rem;
+    font-size: 0.85rem;
+  }
+}

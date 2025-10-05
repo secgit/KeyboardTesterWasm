@@ -1,0 +1,15 @@
+{
+  "name": "keyboard_tester_wasm",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "keyboard_tester_wasm.js",
+    "keyboard_tester_wasm_bg_base64.js",
+    "keyboard_tester_wasm.d.ts"
+  ],
+  "main": "keyboard_tester_wasm.js",
+  "types": "keyboard_tester_wasm.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

@@ -17,43 +17,11 @@ repository.)
 
 ## Local development
 
-The interface lives in the [`docs/`](docs) folder so it can be published with
-GitHub Pages using the “Deploy from a branch” option targeting the `main` branch
-and `/docs` directory. All interaction logic now runs inside a Rust WebAssembly
-module that is embedded into the page as base64 text so no binary artifacts need
-to be committed.
+The site is pure HTML, CSS, and JavaScript located in the [`docs/`](docs)
+folder so it can be deployed via GitHub Pages using the “Deploy from a branch”
+option targeting the `main` branch and `/docs` directory.
 
-### Build the WebAssembly bundle
-
-Install [`wasm-pack`](https://rustwasm.github.io/wasm-pack/installer/) if you do
-not already have it:
-
-```bash
-cargo install wasm-pack
-```
-
-Compile the Rust crate under [`wasm/`](wasm) to WebAssembly outputs inside
-`docs/pkg`:
-
-```bash
-wasm-pack build wasm --target web --out-dir docs/pkg --release
-```
-
-Then convert the generated `.wasm` file into the embedded base64 module and
-remove the binary artifact:
-
-```bash
-./scripts/embed-wasm.sh
-```
-
-> **Note:** `wasm-pack` is configured to skip `wasm-opt` so the build works in
-> minimal environments. If you have Binaryen installed you can remove that
-> override from [`wasm/Cargo.toml`](wasm/Cargo.toml) to enable additional
-> optimizations.
-
-### Preview the site locally
-
-Serve the repository root with any static file server and open
+To preview locally run a static file server from the repository root, then open
 `http://localhost:8000/docs` in a browser:
 
 ```bash

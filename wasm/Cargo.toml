@@ -1,0 +1,42 @@
+[package]
+name = "keyboard_tester_wasm"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = { version = "0.2.92", features = ["serde-serialize"] }
+js-sys = "0.3.69"
+web-sys = { version = "0.3.69", features = [
+    "console",
+    "Document",
+    "DocumentFragment",
+    "DomTokenList",
+    "Element",
+    "Event",
+    "EventTarget",
+    "HtmlButtonElement",
+    "HtmlDivElement",
+    "HtmlElement",
+    "HtmlInputElement",
+    "HtmlParagraphElement",
+    "HtmlSpanElement",
+    "HtmlTableRowElement",
+    "HtmlTableSectionElement",
+    "HtmlUListElement",
+    "KeyboardEvent",
+    "MouseEvent",
+    "Node",
+    "Performance",
+    "Text",
+    "Window"
+] }
+console_error_panic_hook = "0.1.7"
+
+[profile.release]
+lto = true
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false
